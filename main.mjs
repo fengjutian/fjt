@@ -1,6 +1,6 @@
 import process from 'process';
-import chalk from 'chalk';
-import { getFilesAndFoldersInDir } from './ls.mjs';
+import { getFilesAndFoldersInDir } from './lib/ls.mjs';
+import { service } from './lib/service.mjs'
 
 // process.argv.forEach((val, index) => {
 //     console.log(`${index}: ${val}`)
@@ -20,13 +20,10 @@ if (args.length < 2) {
             console.log('curl');
             break;
         case 'ls':
-            let fileList = getFilesAndFoldersInDir(args[2 + _biasArgv]);
-            for(let i of fileList) {
-              console.log(chalk.blue(i.name),`${i.type}`);
-            }
+            getFilesAndFoldersInDir(args[2 + _biasArgv]);
             break;
-        case 'update':
-            console.log('update');
+        case 'service':
+            service()
             break;
         case 'list':
             console.log('list');
