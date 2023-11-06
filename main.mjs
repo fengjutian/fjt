@@ -38,5 +38,3 @@ if (args.length < 2) {
             process.exit(1);
     }
 }
-
-// console.log('args', args);
