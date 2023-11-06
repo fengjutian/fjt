@@ -1,6 +1,8 @@
 import process from 'process';
 import { getFilesAndFoldersInDir } from './lib/ls.mjs';
-import { service } from './lib/service.mjs'
+import { service } from './lib/service.mjs';
+import { readFile } from './lib/cat.mjs';
+import { zip } from './lib/zlib.mjs';
 
 // process.argv.forEach((val, index) => {
 //     console.log(`${index}: ${val}`)
@@ -22,14 +24,17 @@ if (args.length < 2) {
         case 'ls':
             getFilesAndFoldersInDir(args[2 + _biasArgv]);
             break;
+        case 'zip':
+            zip(args[2 + _biasArgv], args[3 + _biasArgv]);
+            break;
         case 'service':
             service()
             break;
-        case 'list':
-            console.log('list');
+        case 'cat':
+            readFile(args[2 + _biasArgv])
             break;
         default:
-            console.log('请输入正确的参数');
+            console.log('输入参数有误');
             process.exit(1);
     }
 }
